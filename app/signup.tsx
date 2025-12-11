@@ -13,7 +13,7 @@ const CONTENT = {
         driverDesc: 'I haul materials between locations',
         pit: 'Pit Operator',
         pitDesc: 'I manage a dump site or quarry',
-        buyer: 'Material Buyer',
+        buyer: 'Material',
         buyerDesc: 'I need materials delivered',
         details: 'My Details',
         nameLabel: 'Full Name',
@@ -145,10 +145,7 @@ export default function SignupScreen() {
                 showsVerticalScrollIndicator={false}
                 scrollEnabled={false}
             >
-                <View style={styles.header}>
-                    <Text style={styles.title}>{t.welcome}</Text>
-                    <Text style={styles.subtitle}>{t.subtitle}</Text>
-                </View>
+
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>{t.iam}</Text>
