@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, SafeAreaView, ScrollView, Alert, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Truck, Pickaxe, HardHat, Check, Globe } from 'lucide-react-native';
+import { Truck, Pickaxe, HardHat, Check, Globe, User, Phone } from 'lucide-react-native';
 
 type Role = 'DRIVER' | 'PIT' | 'BUYER';
 
@@ -11,7 +11,7 @@ const CONTENT = {
         iam: 'Choose your role!',
         driver: 'Driver',
         driverDesc: 'I haul materials between locations',
-        pit: 'Pit Operator',
+        pit: 'Pit',
         pitDesc: 'I manage a dump site or quarry',
         buyer: 'Material',
         buyerDesc: 'I need materials delivered',
@@ -160,25 +160,31 @@ export default function SignupScreen() {
                     <Text style={styles.sectionTitle}>{t.details}</Text>
                     <View style={styles.inputContainer}>
                         <Text style={styles.inputLabel}>{t.nameLabel}</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder={t.namePlaceholder}
-                            placeholderTextColor="#94A3B8"
-                            value={name}
-                            onChangeText={setName}
-                            autoCapitalize="words"
-                        />
+                        <View style={styles.inputWrapper}>
+                            <User color="#64748B" size={20} style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder={t.namePlaceholder}
+                                placeholderTextColor="#94A3B8"
+                                value={name}
+                                onChangeText={setName}
+                                autoCapitalize="words"
+                            />
+                        </View>
                     </View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.inputLabel}>{t.phoneLabel}</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="(555) 555-5555"
-                            placeholderTextColor="#94A3B8"
-                            value={phone}
-                            onChangeText={setPhone}
-                            keyboardType="phone-pad"
-                        />
+                        <View style={styles.inputWrapper}>
+                            <Phone color="#64748B" size={20} style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.input}
+                                placeholder="(555) 555-5555"
+                                placeholderTextColor="#94A3B8"
+                                value={phone}
+                                onChangeText={setPhone}
+                                keyboardType="phone-pad"
+                            />
+                        </View>
                     </View>
 
                 </View>
@@ -315,13 +321,22 @@ const styles = StyleSheet.create({
         color: '#334155',
         marginBottom: 8,
     },
-    input: {
+    inputWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 12,
-        padding: 16,
-        fontSize: 16,
         borderWidth: 1,
         borderColor: '#E2E8F0',
+        paddingHorizontal: 12, // Reduced padding for container
+    },
+    inputIcon: {
+        marginRight: 8,
+    },
+    input: {
+        flex: 1,
+        paddingVertical: 16,
+        fontSize: 16,
         color: '#0F172A',
     },
     button: {
@@ -329,11 +344,17 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         padding: 20,
         alignItems: 'center',
-        marginTop: 8,
+        marginTop: 12,
+        shadowColor: '#0F172A',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8,
     },
     buttonDisabled: {
         backgroundColor: '#94A3B8',
         opacity: 0.7,
+        shadowOpacity: 0.1,
     },
     buttonText: {
         color: 'white',
